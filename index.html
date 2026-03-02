@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>課表規劃器（大二～大五）</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">📚</div>
+      <div>
+        <h1>課表規劃器</h1>
+        <p class="sub">大二～大五｜每學期一張課表｜CSV 匯入匯出｜衝堂可切換</p>
+      </div>
+    </div>
+
+    <div class="actions">
+      <label class="fileBtn">
+        匯入 CSV
+        <input id="csvFile" type="file" accept=".csv,text/csv" />
+      </label>
+      <button id="exportCsvBtn" class="btn">匯出 CSV</button>
+      <button id="resetBtn" class="btn btnGhost" title="清空目前學期課表">清空本學期</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="panel">
+      <div class="row">
+        <div class="field">
+          <label>學年</label>
+          <select id="yearSelect"></select>
+        </div>
+        <div class="field">
+          <label>學期</label>
+          <select id="termSelect"></select>
+        </div>
+
+        <div class="summary">
+          <div class="sumItem">
+            <div class="sumLabel">本學期學分</div>
+            <div id="creditTotal" class="sumValue">0</div>
+          </div>
+          <div class="sumHint">提示：同一格多堂課（衝堂）時，點格子可切換顯示</div>
+        </div>
+      </div>
+
+      <hr class="sep" />
+
+      <h2>新增 / 編輯課程</h2>
+      <form id="courseForm" class="form">
+        <div class="field">
+          <label>課名</label>
+          <input id="courseName" required placeholder="例如：資料庫系統" />
+        </div>
+        <div class="field">
+          <label>教授</label>
+          <input id="courseTeacher" required placeholder="例如：王小明" />
+        </div>
+        <div class="field">
+          <label>學分</label>
+          <input id="courseCredits" type="number" min="0" step="0.5" required placeholder="例如：3" />
+        </div>
+
+        <div class="field">
+          <label>星期</label>
+          <select id="courseDay">
+            <option value="Mon">一</option>
+            <option value="Tue">二</option>
+            <option value="Wed">三</option>
+            <option value="Thu">四</option>
+            <option value="Fri">五</option>
+            <option value="Sat">六</option>
+            <option value="Sun">日</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>節次</label>
+          <select id="coursePeriod"></select>
+        </div>
+
+        <input id="editingId" type="hidden" />
+
+        <div class="formActions">
+          <button class="btn" type="submit" id="saveBtn">加入 / 更新</button>
+          <button class="btn btnGhost" type="button" id="cancelEditBtn" disabled>取消編輯</button>
+        </div>
+      </form>
+
+      <div class="tableActions">
+        <div class="muted">小技巧：點格子→在衝堂課程中切換；右側清單可編輯/刪除</div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <section class="timetableWrap">
+        <h2>課表</h2>
+        <div id="timetable" class="timetable"></div>
+      </section>
+
+      <section class="listWrap">
+        <h2>本學期課程清單</h2>
+        <div id="courseList" class="courseList"></div>
+      </section>
+    </section>
+
+    <section class="panel">
+      <h2>CSV 格式</h2>
+      <pre class="code">
+year,term,day,period,name,teacher,credits,id
+2,1,Mon,1-2,資料庫系統,王小明,3,course_...
+      </pre>
+      <div class="muted">
+        year：2~5（大二到大五）｜term：1/2（上/下）｜day：Mon~Sun｜period：例如 1-2、3-4、5、6-7...
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Made for GitHub Pages · 純前端</span>
+  </footer>
+
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
