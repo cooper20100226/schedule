@@ -277,7 +277,8 @@ function renderTimetable() {
   for (const d of DAYS) grid.appendChild(headCell(d.label, true, false));
 
   for (const rowP of GRID_PERIOD_ROWS) {
-    grid.appendChild(headCell(rowP, false, true));
+    const time = PERIOD_TIME[rowP] ? ` (${PERIOD_TIME[rowP]})` : "";
+    grid.appendChild(headCell(`${rowP}${time}`, false, true));
 
     for (const d of DAYS) {
       const key = `${d.key}|${rowP}`;
@@ -502,22 +503,7 @@ function dayLabel(key) {
 // 你的課可能選「1」「2」這種，課表列用「1-2」這種：這邊做映射
 function normalizeToRowPeriod(period) {
   const p = String(period).trim();
-
-  // 已經是 row 形式就直接回
-  if (GRID_PERIOD_ROWS.includes(p)) return p;
-
-  // 單節次映射到最近的雙節列（你可改規則）
-  const n = Number(p);
-  if (!Number.isNaN(n)) {
-    if (n <= 2) return "1-2";
-    if (n <= 4) return "3-4";
-    if (n <= 6) return "5-6";
-    if (n <= 8) return "7-8";
-    if (n <= 10) return "9-10";
-    return "11-12";
-  }
-
-  // 其他怪格式：就原樣，避免崩
+  // 你的課表列就是單一節次（1~9/A/B），所以直接回傳
   return p;
 }
 
