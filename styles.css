@@ -1,0 +1,252 @@
+:root{
+  --bg:#0b1020;
+  --card:#121a33;
+  --card2:#0f1730;
+  --text:#e9ecf6;
+  --muted:#aab2d5;
+  --line:#27325f;
+  --accent:#7aa2ff;
+  --danger:#ff6b6b;
+  --ok:#4ade80;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans TC", "PingFang TC", sans-serif;
+  background: radial-gradient(1200px 700px at 10% 0%, #18235a 0%, var(--bg) 55%) fixed;
+  color:var(--text);
+}
+
+.topbar{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display:flex;
+  gap:16px;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 18px;
+  background: rgba(10,14,30,.8);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.brand{display:flex;gap:12px;align-items:center}
+.logo{font-size:28px}
+h1{margin:0;font-size:18px}
+.sub{margin:2px 0 0;color:var(--muted);font-size:12px}
+
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn, .fileBtn{
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color:var(--text);
+  padding:10px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  box-shadow: none;
+  transition: .15s;
+  font-weight:600;
+}
+.btn:hover, .fileBtn:hover{transform: translateY(-1px); border-color: rgba(122,162,255,.6)}
+.btn:active, .fileBtn:active{transform: translateY(0px)}
+.btnGhost{background: transparent}
+.fileBtn input{display:none}
+
+.container{max-width:1200px;margin:18px auto;padding:0 14px 30px}
+.panel{
+  background: rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  box-shadow: var(--shadow);
+  padding:16px;
+}
+.row{
+  display:flex;
+  gap:12px;
+  align-items:flex-end;
+  flex-wrap:wrap;
+}
+.field{display:flex;flex-direction:column;gap:6px;min-width:160px}
+.field label{font-size:12px;color:var(--muted)}
+.field input, .field select{
+  background: rgba(0,0,0,.22);
+  color: var(--text);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:10px 10px;
+  outline:none;
+}
+.field input:focus, .field select:focus{border-color: rgba(122,162,255,.6)}
+.sep{border:0;border-top:1px solid rgba(255,255,255,.08);margin:14px 0}
+
+.summary{
+  margin-left:auto;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width:260px;
+}
+.sumItem{
+  display:flex;align-items:baseline;justify-content:space-between;
+  background: rgba(0,0,0,.18);
+  border:1px solid rgba(255,255,255,.10);
+  padding:10px 12px;
+  border-radius:14px;
+}
+.sumLabel{color:var(--muted);font-size:12px}
+.sumValue{font-size:22px;font-weight:800;color: var(--accent)}
+.sumHint{color:var(--muted);font-size:12px}
+
+h2{margin:0 0 10px;font-size:16px}
+.form{
+  display:grid;
+  grid-template-columns: 2fr 1.3fr .8fr .8fr .8fr;
+  gap:10px;
+}
+.formActions{display:flex;gap:10px;align-items:center}
+.formActions .btn{white-space:nowrap}
+
+.tableActions{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.muted{color:var(--muted);font-size:12px}
+
+.layout{
+  display:grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap:14px;
+  margin-top:14px;
+}
+.timetableWrap,.listWrap{
+  background: rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  box-shadow: var(--shadow);
+  padding:16px;
+}
+.timetable{
+  overflow:auto;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.grid{
+  display:grid;
+  grid-template-columns: 80px repeat(7, minmax(120px, 1fr));
+}
+.cell, .head{
+  border-right:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  padding:10px;
+  min-height:66px;
+}
+.head{
+  position: sticky;
+  top: 0;
+  background: rgba(15, 23, 48, .92);
+  z-index: 2;
+  font-weight:700;
+}
+.rowHead{
+  position: sticky;
+  left: 0;
+  background: rgba(15, 23, 48, .92);
+  z-index: 1;
+  font-weight:700;
+}
+.slot{
+  cursor:pointer;
+  background: rgba(0,0,0,.16);
+  border-radius:12px;
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  min-height:52px;
+  border:1px solid rgba(255,255,255,.10);
+}
+.slot:hover{border-color: rgba(122,162,255,.55)}
+.slot.empty{opacity:.65}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  color: var(--muted);
+}
+.pill{
+  font-size:11px;
+  padding:2px 8px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.06);
+}
+.pill.conflict{border-color: rgba(255,107,107,.6); color:#ffd0d0}
+
+.courseTitle{font-weight:800}
+.courseMeta{font-size:12px;color:var(--muted)}
+.courseList{display:flex;flex-direction:column;gap:10px}
+.item{
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  border-radius:14px;
+  padding:12px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+}
+.item .left{display:flex;flex-direction:column;gap:4px}
+.item .right{display:flex;gap:8px;align-items:center}
+.smallBtn{
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.05);
+  color: var(--text);
+  cursor:pointer;
+  font-weight:700;
+}
+.smallBtn:hover{border-color: rgba(122,162,255,.55)}
+.smallBtn.danger:hover{border-color: rgba(255,107,107,.6)}
+.smallBtn.danger{color:#ffd0d0}
+
+.code{
+  background: rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:12px;
+  overflow:auto;
+}
+
+.footer{
+  color: var(--muted);
+  text-align:center;
+  padding:18px 0 28px;
+  font-size:12px;
+}
+
+.toast{
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  background: rgba(10,14,30,.9);
+  border: 1px solid rgba(255,255,255,.10);
+  color: var(--text);
+  border-radius: 14px;
+  padding: 10px 12px;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: .2s;
+  pointer-events: none;
+  max-width: 320px;
+}
+.toast.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (max-width: 980px){
+  .layout{grid-template-columns: 1fr}
+  .form{grid-template-columns: 1fr 1fr}
+  .summary{margin-left:0}
+}
